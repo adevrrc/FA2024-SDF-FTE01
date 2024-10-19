@@ -1,6 +1,6 @@
 # Module 3 Demonstration
 
-This directory contains the source for Damien Altenburg's module 2 demonstration.
+This directory contains the source for Damien Altenburg's module 3 demonstration.
 
 ## Notes
 
