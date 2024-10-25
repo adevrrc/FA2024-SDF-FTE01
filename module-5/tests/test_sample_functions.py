@@ -33,3 +33,45 @@ Examples:
 
 __version__ = "0.11.2024"
 __author__ = "Damien Altenburg"
+
+import unittest
+# from package.module import function
+from utilities.sample_functions import format_greeting
+
+class TestSampleFunctions(unittest.TestCase):
+    """Defines the unit tests for the sample_functions module."""
+
+    ### format_greeting Tests
+
+    def test_format_greeting_exception_first_name_not_a_string(self):
+        # Arrange
+        first_name = 1234
+        last_name = "Altenburg"
+
+        # Act
+        with self.assertRaises(TypeError) as context:
+            format_greeting(first_name, last_name)
+
+        # Assert
+        expected = "First name must be a str."
+        actual = str(context.exception)
+
+        self.assertEqual(expected, actual)
+
+    def test_format_greeting_exception_last_name_not_a_string(self):
+        # Arrange
+        first_name = "Damien"
+        last_name = None
+
+        # Act
+        with self.assertRaises(TypeError) as context:
+            format_greeting(first_name, last_name)
+
+        # Assert
+        expected = "Last name must be a str."
+        actual = str(context.exception)
+
+        self.assertEqual(expected, actual)
+
+if __name__ == "__main__":
+    unittest.main()
