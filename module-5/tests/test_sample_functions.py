@@ -35,17 +35,17 @@ __version__ = "0.11.2024"
 __author__ = "Damien Altenburg"
 
 import unittest
-# from package.module import function
 from utilities.sample_functions import format_greeting
+from utilities.sample_functions import get_whole_number
 
 class TestSampleFunctions(unittest.TestCase):
     """Defines the unit tests for the sample_functions module."""
 
-    ### format_greeting Tests
-
-    def test_format_greeting_exception_first_name_not_a_string(self):
+    #### format_greeting() Tests
+     
+    def test_format_greeting_first_name_not_a_string(self):
         # Arrange
-        first_name = 1234
+        first_name = None
         last_name = "Altenburg"
 
         # Act
@@ -55,13 +55,12 @@ class TestSampleFunctions(unittest.TestCase):
         # Assert
         expected = "First name must be a str."
         actual = str(context.exception)
-
         self.assertEqual(expected, actual)
 
-    def test_format_greeting_exception_last_name_not_a_string(self):
+    def test_format_greeting_last_name_not_a_string(self):
         # Arrange
         first_name = "Damien"
-        last_name = None
+        last_name = 10
 
         # Act
         with self.assertRaises(TypeError) as context:
@@ -70,7 +69,95 @@ class TestSampleFunctions(unittest.TestCase):
         # Assert
         expected = "Last name must be a str."
         actual = str(context.exception)
+        self.assertEqual(expected, actual)
 
+    def test_format_greeting_last_name_blank_string(self):
+        # Arrange
+        first_name = "Damien"
+        last_name = ""
+
+        # Act
+        with self.assertRaises(ValueError) as context:
+            format_greeting(first_name, last_name)
+
+        # Assert
+        expected = "Last name must contain non-whitespace characters."
+        actual = str(context.exception)
+        self.assertEqual(expected, actual)
+
+    def test_format_greeting_salutation_not_a_str(self):
+        # Arrange
+        first_name = "Damien"
+        last_name = "Altenburg"
+        salutation = None
+
+        # Act
+        with self.assertRaises(TypeError) as context:
+            format_greeting(first_name, last_name, salutation)
+
+        # Assert
+        expected = "Salutation must be a str."
+        actual = str(context.exception)
+        self.assertEqual(expected, actual)
+
+    def test_format_greeting_salutation_blank_str(self):
+        # Arrange
+        first_name = "Damien"
+        last_name = "Altenburg"
+        salutation = ""
+
+        # Act
+        with self.assertRaises(ValueError) as context:
+            format_greeting(first_name, last_name, salutation)
+
+        # Assert
+        expected = "Salutation must contain non-whitespace characters."
+        actual = str(context.exception)
+        self.assertEqual(expected, actual)
+        
+    def test_format_greeting_title_not_a_str(self):
+        # Arrange
+        first_name = "Damien"
+        last_name = "Altenburg"
+        title = None
+
+        # Act
+        with self.assertRaises(TypeError) as context:
+            format_greeting(first_name, last_name, title=title)
+
+        # Assert
+        expected = "Title must be a str."
+        actual = str(context.exception)
+        self.assertEqual(expected, actual)
+
+    def test_format_greeting_title_blank_str(self):
+        # Arrange
+        first_name = "Damien"
+        last_name = "Altenburg"
+        title = ""
+
+        # Act
+        with self.assertRaises(ValueError) as context:
+            format_greeting(first_name, last_name, title=title)
+
+        # Assert
+        expected = "Title must contain non-whitespace characters."
+        actual = str(context.exception)
+        self.assertEqual(expected, actual)
+
+    #### get_whole_number Tests
+
+    def test_get_whole_number_prompt_not_a_string(self):
+        # Arrange
+        prompt = None
+
+        # Act
+        with self.assertRaises(TypeError) as context:
+            get_whole_number(prompt)
+
+        # Assert
+        expected = "Prompt must be a str."
+        actual = str(context.exception)
         self.assertEqual(expected, actual)
 
 if __name__ == "__main__":
