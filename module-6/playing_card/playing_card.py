@@ -11,6 +11,12 @@ class PlayingCard:
 
     def __init__(self, rank: Rank, suit: Suit):
         """Initializes a new instance of the PlayingCard class."""
+        if not isinstance(rank, Rank):
+            raise TypeError("The rank must be a Rank.")
+        
+        if not isinstance(suit, Suit):
+            raise TypeError("The suit must be a Suit.")
+        
         self.__rank = rank
         self.__suit = suit
         self.__is_face_up = False 
@@ -33,6 +39,9 @@ class PlayingCard:
     
     @rank.setter
     def rank(self, rank: Rank) -> None:
+        if not isinstance(rank, Rank):
+            raise TypeError("The rank must be a Rank.")
+
         self.__rank = rank
 
     @property
@@ -51,6 +60,9 @@ class PlayingCard:
         Args:
             suit (Suit): The suit of the playing card.
         """
+        if not isinstance(suit, Suit):
+            raise TypeError("The suit must be a Suit.")
+
         self.__suit = suit
 
     @property
