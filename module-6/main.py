@@ -21,10 +21,7 @@ def main():
     #card.rank = "Ace"
     #card.rank = 1
     #card.suit = "Spade"
-
-    print(card.rank)
-    print(card.suit)
-
+    
     print(str(card))
 
     print(repr(card))
@@ -35,15 +32,13 @@ def main():
 
     print(card.is_face_up)
 
+    print(card)
+
     card.flip()
 
+    print(card)
+
     print(card.is_face_up)
-
-    print(PlayingCard.MAXIMUM_RANK)
-
-    print(card.MAXIMUM_RANK)
-
-    print(PlayingCard.flip())
 
 if __name__ == "__main__":
     main()
