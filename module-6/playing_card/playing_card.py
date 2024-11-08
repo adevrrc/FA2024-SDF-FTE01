@@ -9,6 +9,9 @@ from playing_card.suit import Suit
 class PlayingCard:
     """Represents a standard playing card."""
 
+    # Declare and define a class attribute (static)
+    MAXIMUM_RANK: int = Rank.KING.value
+
     def __init__(self, rank: Rank, suit: Suit):
         """Initializes a new instance of the PlayingCard class."""
         if not isinstance(rank, Rank):
